@@ -81,15 +81,15 @@ Further to the 'test_mode' hook discussed above, the `ncc` / `ncc2` service on t
 
  * tftpd_ready.txt
  * chklst.txt
- * wps_default_pin.txt
+ * wps\_default\_pin.txt
  * usb_connect.txt
  * wps_btn.txt
  * reset_btn.txt
  * reboot_btn.txt
  * calibration_ready24G.txt
  * calibration_ready5G.txt
- * restore_default_finish.txt
- * set_mac_finish.txt
+ * restore\_default\_finish.txt
+ * set\_mac\_finish.txt
  * test_mode.txt
  * wifist.txt
 
