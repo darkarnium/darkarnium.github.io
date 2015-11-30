@@ -51,7 +51,7 @@ After a few hours of completely invalid attempts, we switched things up a bit an
 ![A wild flag appears!](/assets/article_images/2015/m3u8-lfi-flag.png)
 ...Apparently it can! With that, we had the flag, were up 180 points and nabbed the silver medal for the second to solve to boot :)
 
-The following M3U8 file was the used as our final solution, which simply uses a local absolute file path as the source:
+The following M3U8 file was used for our final solution. As above, it simply uses a local absolute file path as the source and has a duration of one-second set.
 
 ```xml
 #EXTM3U
