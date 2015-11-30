@@ -44,9 +44,9 @@ From here, we were relatively stumped until jdoe made another suggestion, asking
 After uploading the file, we were immediately greeted by a corrupt WEBM which was a great sign. A quick look at the logs from the server that we added to the M3U8 file as the segment source showed that there had been a query from a `libavformat` user-agent requesting the same invalid path included in our PoC.
 
 ![That's a good sign...](/assets/article_images/2015/m3u8-rfi-log-hit.png)
-From here, we knew we had a potential way of nabbing the flag, we just weren't sure how to get the flag into a format that would be rendered by `ffmpeg`. As a result, I ended up getting stuck down the rabbit hole. At one point I was attempting to use M3U8 subtitle support to perform a local file inclusion of the flag, hoping that it would be rendered into the file in same manner. Needless to say, this didn't work.
+From here, we knew we had a potential way of nabbing the flag, we just weren't sure how to get the flag into a format that would be rendered by `ffmpeg`. As a result, I ended up getting stuck down the rabbit hole. At one point I was attempting to use M3U8 subtitle support to perform a local file inclusion of the flag, hoping that it would be rendered into the file in some manner. Needless to say, this didn't work.
 
-After a few hours of completely invalid attempts, we switched things up a bit and attempted a local file inclusion directly from the uploaded M3U8... Trans-coding a text file into a WEBM via M3U8 playlist. that can't possibly work, can it?
+After a few hours of completely invalid attempts, we switched things up a bit and attempted a local file inclusion directly from the uploaded M3U8... Trans-coding a text file into a WEBM via M3U8 playlist? That can't possibly work, can it?
 
 ![A wild flag appears!](/assets/article_images/2015/m3u8-lfi-flag.png)
 ...Apparently it can! With that, we had the flag, were up 180 points and nabbed the silver medal for the second to solve to boot :)
