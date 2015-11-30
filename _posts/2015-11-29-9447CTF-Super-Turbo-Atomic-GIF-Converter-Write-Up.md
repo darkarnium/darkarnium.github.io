@@ -5,7 +5,7 @@ date: 2015-11-29 00:00:00.000000000 -08:00
 author: Peter Adkins
 image: 
 ---
-Over the last two days I've been participating in the 9447 CTF with a group ephemerally known as ['Moose 1v1'](https://9447.plumbing/user?id=941). As this was my first participation in any form of CTF, and our team managed to snatch the silver for being the second to solve, I thought I'd write-up the solution that our team came up with.
+Over the last two days I've been participating in the 9447 CTF with a group ephemerally known as ['Moose 1v1'](https://9447.plumbing/user?id=941). As this was my first participation in any form of CTF, and our team managed to snatch the silver for being the second to solve this particular challenge, I thought I'd write-up the solution that our team came up with.
 
 It's worth noting that we burned a few hours going in entirely the wrong direction, which is discussed below. In the end the sources for the application were released as a hint, but that was a few hours after we'd managed to find the flag.
 
