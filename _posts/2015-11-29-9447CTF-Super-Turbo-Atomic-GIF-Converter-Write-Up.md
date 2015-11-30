@@ -38,6 +38,7 @@ A quick `strings` examination of the rendered WEBM file resulted in two telling 
 
 From here, I was relatively hell-bent on attempting command-injection through input file-name - encasing Unix commands in the file name inside of back-ticks as well as `$()`. Unfortunately, none of these attempts were successful. It was at this point that one of our team members, jdoe, made the suggestion that the use of a file-name containing an `ffmpeg` filter (such as `concat:`) might work, but subsequent attempts with this method were also unsuccessful.
 
+### M3U8 and xFI
 From here, we were relatively stumped until jdoe made another suggestion, asking whether `ffpmeg` supports playlist files. I was aware from some previous dealings with `ffmpeg` that it supported HLS streaming through use of M3U8 files, so we thought we'd give it a shot. We knocked together a quick M3U8 playlist containing a non-existent HTTP endpoint as the media segment source, gave the file a suffix of `.gif.m3u8` and uploaded it.
 
 After uploading the file, we were immediately greeted by a corrupt WEBM which was a great sign. A quick look at the logs from the server that we added to the M3U8 file as the segment source showed that there had been a query from a `libavformat` user-agent requesting the same invalid path included in our PoC.
