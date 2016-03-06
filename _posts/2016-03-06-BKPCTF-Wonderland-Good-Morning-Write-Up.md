@@ -11,7 +11,7 @@ The first web application that we worked on was 'Good Morning' (Wonderland on th
 
 ### Good Morning!
 
-![Nobody expects the Spanish inquisition](/assets/article_images/2016/monty.png)
+![Nobody expects the Spanish inquisition](/assets/article_images/2016/monty.png){: .center-image }
 
 When first opened, Good Morning presented the user with a number of seemingly Python inspired questions:
 
@@ -37,23 +37,23 @@ As a result of the above, and that the MySQL sanitization was being performed ma
 
 The next question was where to perform this injection. Ideally, we wanted a retrieval operation in order to be able to query the database for arbitrary data while searching for a flag - still assuming, at this stage, that the flag was inside the database.
 
-### WebSockets and `get_answer`
+### WebSockets and JSON
 
-![Well, that was easy.](/assets/article_images/2016/get_answer.png)
+![Well... That was easy.](/assets/article_images/2016/get_answer.png){: .center-image }
 
 Luckily enough, the last operation performed by the application when a survey was complete was to perform a query for a row associated with the user's input answer for `favourite color`.
 
-As a result of this `get_answer` call, we thought that we should be able to simply inject `¥\"` in place of a proper `answer`, followed by some arbitrary SQL, in order to try and locate the flag.
+As a result of this `get_answer` call, we thought that we should be able to simply inject `¥\"` in place of a proper `question` or `answer`, followed by some arbitrary SQL, in order to try and locate the flag.
 
 ### Fire!
 
 Rather than setting up a new WebSocket from Ruby or Python, we found it easier to just use OWASP Zap to fire requests at an already open WebSocket while the page was loaded. Lazy, yes, but hey! :)
 
-![Fingers crossed](/assets/article_images/2016/sjis-kgo.png)
+![Fingers crossed](/assets/article_images/2016/sjis-kgo.png){: .center-image }
 
 At this stage, we still weren't sure whether flag was inside of the database, and if it was, where it might be. As luck would have it, however, the first request yielded the flag, and three points for the team.
 
-![Gotcha!](/assets/article_images/2016/sjis-request.png)
+![Gotcha!](/assets/article_images/2016/sjis-request.png){: .center-image }
 
 The full request sent to the WebSocket which gave us the flag was the following:
 
