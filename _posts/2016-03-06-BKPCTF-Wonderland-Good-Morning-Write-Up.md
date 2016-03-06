@@ -11,7 +11,7 @@ The first web application that we worked on was 'Good Morning' (Wonderland on th
 
 ### Good Morning!
 
-![Nobody expects the Spanish inquisition](/assets/article_images/2016/monty.png){: .center-image }
+![Nobody expects the Spanish inquisition](/assets/article_images/2016/monty.png)
 
 When first opened, Good Morning presented the user with a number of seemingly Python inspired questions:
 
@@ -39,7 +39,7 @@ The next question was where to perform this injection. Ideally, we wanted a retr
 
 ### WebSockets and JSON
 
-![Well... That was easy.](/assets/article_images/2016/get_answer.png){: .center-image }
+![Well... That was easy.](/assets/article_images/2016/get_answer.png)
 
 Luckily enough, the last operation performed by the application when a survey was complete was to perform a query for a row associated with the user's input answer for `favourite color`.
 
@@ -49,11 +49,11 @@ As a result of this `get_answer` call, we thought that we should be able to simp
 
 Rather than setting up a new WebSocket from Ruby or Python, we found it easier to just use OWASP Zap to fire requests at an already open WebSocket while the page was loaded. Lazy, yes, but hey! :)
 
-![Fingers crossed](/assets/article_images/2016/sjis-kgo.png){: .center-image }
+![Fingers crossed](/assets/article_images/2016/sjis-kgo.png)
 
 At this stage, we still weren't sure whether flag was inside of the database, and if it was, where it might be. As luck would have it, however, the first request yielded the flag, and three points for the team.
 
-![Gotcha!](/assets/article_images/2016/sjis-request.png){: .center-image }
+![Gotcha!](/assets/article_images/2016/sjis-request.png)
 
 The full request sent to the WebSocket which gave us the flag was the following:
 
