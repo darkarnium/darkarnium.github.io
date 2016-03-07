@@ -27,7 +27,8 @@ After a bit of review, the flow was found to be as follows:
 * User solves a captcha.
   * The system marks the bug as **'Seen'** after completion.
 
-<br>
+&nbsp;
+
 However, now that we believed that we had captured the 'standard flow' of the application, it was time to try and see whether we could affect the flow by tampering with any and all request data.
 
 ### The Obvious?
@@ -71,7 +72,8 @@ Although directory indexes were disabled, a lot of the time these files tend to 
 * app.js
   * The AngularJS application itself.
 
-<br>
+&nbsp;
+
 Using the common names above, we found that there was was both a minified copy of AngularJS inside the `/dist/js/` directory, as well as the scaffolding for an AngularJS application.
 
 ![Ah ha!](/assets/article_images/2016/rabbithole-2.png)
