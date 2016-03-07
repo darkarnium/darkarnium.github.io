@@ -19,13 +19,13 @@ When first loaded, the 'Bug Bounty' challenge was seen to be exactly as it said 
 
 After a bit of review, the flow was found to be as follows:
 
-1. User creates an account.
-2. User submits a bug.
-  + User provided with a SHA1 hash for tracking.
-  + User is requested to solve a captcha.
-  + New bug is marked with a status of **'Pending review'**.
-3. User solves a captcha.
-  + The system marks the bug as **'Seen'** after completion.
+* User creates an account.
+* User submits a bug.
+  * User provided with a SHA1 hash for tracking.
+  * User is requested to solve a captcha.
+  * New bug is marked with a status of **'Pending review'**.
+* User solves a captcha.
+  * The system marks the bug as **'Seen'** after completion.
 
 However, now that we believed that we had captured the 'standard flow' of the application, it was time to try and see whether we could affect the flow by tampering with any and all request data.
 
