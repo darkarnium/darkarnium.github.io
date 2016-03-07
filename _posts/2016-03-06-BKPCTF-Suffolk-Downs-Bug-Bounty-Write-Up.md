@@ -23,7 +23,7 @@ After a bit of review, the flow was found to be as follows:
 * User submits a bug.
   * User provided with a SHA1 hash for tracking.
   * User is requested to solve a captcha.
-  * New bug is marked with a status of **'Pending review'**.
+  * New bug is marked with a status of **'Pending review'.**
 * User solves a captcha.
   * The system marks the bug as **'Seen'** after completion.
 
