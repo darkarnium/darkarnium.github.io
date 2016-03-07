@@ -86,7 +86,7 @@ Unfortunately, all of my attempts culminated the following:
 
 After spending a bit of time reviewing CSP documentation and reported bypasses, we found that a `META` refresh tag has been demonstrated to be able to be used to hard-redirect to another page without CSP balking. Although this isn't a CSP bypass, we thought that we might be able to use this to our advantage if the system which was marking submissions as **'Seen'** was leaking any information on redirection (referrer headers, etc).
 
-As a result, we knocked together a one-liner which attempts to immediately redirect the page to an [HTTP request bin](http://www.requestb.in):
+As a result, we knocked together a one-liner which attempts to immediately redirect the page to an [HTTP request bin](http://requestb.in):
 
 ![A long shot.](/assets/article_images/2016/a-long-shot.png)
 
