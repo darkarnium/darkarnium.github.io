@@ -54,7 +54,7 @@ However, for 'funsies', I thought I'd give some very basic XXS a shot; just to b
 
 !["Yeah? Nah."](/assets/article_images/2016/hah-no.png)
 
-At this stage, we started to look for scripts that we could use for a CSP bypass.
+At this stage, we started to look for scripts that we could use for a CSP bypass that were included in the whitelist - maybe AngularJS, or something else custom?
 
 ### The Rabbit Hole Begins...
 
