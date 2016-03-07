@@ -38,13 +38,13 @@ As for directory traversal, this was not only incorrect, but also had me burn a 
 
 ### CSP.
 
-To quote [H5SC Minichallenge 3](https://github.com/cure53/XSSChallengeWiki/wiki/H5SC-Minichallenge-3:-%22Sh*t,-it's-CSP!%22), "Sh*t, it's CSP!":
+To quote [H5SC Minichallenge 3](https://github.com/cure53/XSSChallengeWiki/wiki/H5SC-Minichallenge-3:-%22Sh*t,-it's-CSP!%22), "Sh*t, it's CSP!".
+
+It was noticed quite quickly during the initial investigation that there was a very strict CSP (Content Security Policy) applied to all responses from the application. Given that this was present, and that a submitted bug changed status to **'Seen'** after a captcha was solved, there was some thought that the intended solution involved a CSP bypass.
 
 ```
 content-security-policy:"default-src 'none'; connect-src 'self';  frame-src 'self'; script-src 52.87.183.104:5000/dist/js/ 'sha256-KcMxZjpVxhUhzZiwuZ82bc0vAhYbUJsxyCXODP5ulto=' 'sha256-u++5+hMvnsKeoBWohJxxO3U9yHQHZU+2damUA6wnikQ=' 'sha256-zArnh0kTjtEOVDnamfOrI8qSpoiZbXttc6LzqNno8MM=' 'sha256-3PB3EBmojhuJg8mStgxkyy3OEJYJ73ruOF7nRScYnxk=' 'sha256-bk9UfcsBy+DUFULLU6uX/sJa0q7O7B8Aal2VVl43aDs='; font-src 52.87.183.104:5000/dist/fonts/ fonts.gstatic.com; style-src 52.87.183.104:5000/dist/css/ fonts.googleapis.com; img-src 'self';"
 ```
-
-It was noticed quite quickly during the initial investigation that there was a very strict CSP (Content Security Policy) applied to all responses from the application. Given that this was present, and that a submitted bug changed status to **'Seen'** after a captcha was solved, there was some thought that the intended solution involved a CSP bypass.
 
 However, for 'funsies', I thought I'd give some very basic XXS a shot; just to be sure that the CSP was being applied and working as expected.
 
