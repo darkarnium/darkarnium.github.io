@@ -23,9 +23,9 @@ After a bit of review, the flow was found to be as follows:
 2. User submits a bug.
   + User provided with a SHA1 hash for tracking.
   + User is requested to solve a captcha.
-  + New bug is marked with a status of `Pending review`.
+  + New bug is marked with a status of **'Pending review'**.
 3. User solves a captcha.
-  + The system marks the bug as `Seen` after completion.
+  + The system marks the bug as **'Seen'** after completion.
 
 However, now that we believed that we had captured the 'standard flow' of the application, it was time to try and see whether we could affect the flow by tampering with any and all request data.
 
@@ -41,7 +41,7 @@ To quote [H5SC Minichallenge 3](https://github.com/cure53/XSSChallengeWiki/wiki/
 
 ```content-security-policy:"default-src 'none'; connect-src 'self';  frame-src 'self'; script-src 52.87.183.104:5000/dist/js/ 'sha256-KcMxZjpVxhUhzZiwuZ82bc0vAhYbUJsxyCXODP5ulto=' 'sha256-u++5+hMvnsKeoBWohJxxO3U9yHQHZU+2damUA6wnikQ=' 'sha256-zArnh0kTjtEOVDnamfOrI8qSpoiZbXttc6LzqNno8MM=' 'sha256-3PB3EBmojhuJg8mStgxkyy3OEJYJ73ruOF7nRScYnxk=' 'sha256-bk9UfcsBy+DUFULLU6uX/sJa0q7O7B8Aal2VVl43aDs='; font-src 52.87.183.104:5000/dist/fonts/ fonts.gstatic.com; style-src 52.87.183.104:5000/dist/css/ fonts.googleapis.com; img-src 'self';"```
 
-It was noticed quite quickly during the initial investigation that there was a very strict CSP (Content Security Policy) applied to all responses from the application. Given that this was present, and that a submitted bug changed status to 'Seen' after a captcha was solved, there was some thought that the intended solution involved a CSP bypass.
+It was noticed quite quickly during the initial investigation that there was a very strict CSP (Content Security Policy) applied to all responses from the application. Given that this was present, and that a submitted bug changed status to **'Seen'** after a captcha was solved, there was some thought that the intended solution involved a CSP bypass.
 
 However, for 'funsies', I thought I'd give some very basic XXS a shot; just to be sure that the CSP was being applied and working as expected.
 
@@ -80,7 +80,7 @@ Unfortunately, all of my attempts culminated the following:
 
 ### Enter META
 
-After spending a bit of time reviewing CSP documentation and reported bypasses, we found that a `META` refresh tag has been demonstrated to be able to be used to hard-redirect to another page without CSP balking. Although this isn't a CSP bypass, we thought that we might be able to use this to our advantage if the system which was marking submissions as `Seen` was leaking any information on redirection (referrer headers, etc).
+After spending a bit of time reviewing CSP documentation and reported bypasses, we found that a `META` refresh tag has been demonstrated to be able to be used to hard-redirect to another page without CSP balking. Although this isn't a CSP bypass, we thought that we might be able to use this to our advantage if the system which was marking submissions as **'Seen'** was leaking any information on redirection (referrer headers, etc).
 
 As a result, we knocked together a one-liner which attempts to immediately redirect the page to an [HTTP request bin](http://www.requestb.in):
 
@@ -90,7 +90,7 @@ Once submitted, we accessed the submission via `show_report` - which loads the s
 
 !["...And I would have gotten away with it too if it wasn't for your darn CSP."](/assets/article_images/2016/no-dice.png)
 
-At this stage we were at a loss. However, as one final shot at the moon, we thought we should complete the captcha for this submission anyway; just in case the system marking these reports as `Seen` was rendering reports in a different manner.
+At this stage we were at a loss. However, as one final shot at the moon, we thought we should complete the captcha for this submission anyway; just in case the system marking these reports as **'Seen'** was rendering reports in a different manner.
 
 ![Awww Yiss!](/assets/article_images/2016/flaggy-flag.png)
 
