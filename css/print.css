@@ -1,6 +1,16 @@
 .article-image{
 page-break-after:never
 }
+
+pre {
+  white-space: pre-wrap
+}
+.center-image {
+  display: block
+  max-width: 100%
+  height: auto
+}
+
 .post-content, 
 .bottom-teaser.cf{
   padding-top:0!important
