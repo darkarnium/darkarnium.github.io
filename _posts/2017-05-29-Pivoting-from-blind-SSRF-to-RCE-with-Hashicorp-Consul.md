@@ -6,7 +6,7 @@ author: Peter Adkins
 image:
 ---
 
-This post details an example of chaning three relatively trivial vulnerabilities to achieve remote code execution on a Bug Bounty target. These vulnerabilities alone would have likely been of low severity, but when used together they were scored and rewarded together as a High Priority (P1) issue.
+This post details an example of chaining three relatively trivial vulnerabilities to achieve remote code execution on a Bug Bounty target. These vulnerabilities alone would have likely been of low severity, but when used together they were scored and rewarded together as a High Priority (P1) issue.
 
 This vulnerability was originally reported to `$provider` on the 24th of April, rewarded as a valid finding on the 27th of April, and patched by the 1st of May. Not only was the communication with both the Bugcrowd ASE and `$provider` fantastic, a patch was rolled out not long after initial triage and the vulnerability confirmed resolved.
 
@@ -26,11 +26,11 @@ Given that a complete URL for an external web service was able to be provided, I
 
 Unfortunately, it was quickly found that although the service appeared to successfully query the meta-data service, the code handling the 'fetch' was written in such a way that if the remote service returned an HTTP 200, the body of the request would be fed directly into an XML parser. As a result of this design, the web application simply raised a generic error that the remote service had returned invalid XML.
 
-A subsequent fetch for a document that did _NOT_ exist found that on HTTP 4XX errors, the response from the HTTP request would be rendered inside of the error returned to the user.  However, while this is neat I couldnt see any cases where sensitive data may may be returned AND the response code would be returned in the 4XX range. After some additional testing, it was found that even when the remote service responded with valid XML, content was never returned to the user; only a basic 'success' message was ever returned.
+A subsequent fetch for a document that did _NOT_ exist found that on HTTP 4XX errors, the response from the HTTP request would be rendered inside of the error returned to the user.  However, while this is neat I couldn't see any cases where sensitive data may may be returned AND the response code would be returned in the 4XX range. After some additional testing, it was found that even when the remote service responded with valid XML, content was never returned to the user; only a basic 'success' message was ever returned.
 
 ### External Entities?
 
-Given that it didn't seem possible to return the content of a successfully fetched external resource, the next thought was to attempt to use XXE (XML Enternal Entities) in order to fetch a document from the local machine (using a `file:///` URI) and push it to a remote endpoint using a "blind" XXE style attack.
+Given that it didn't seem possible to return the content of a successfully fetched external resource, the next thought was to attempt to use XXE (XML External Entities) in order to fetch a document from the local machine (using a `file:///` URI) and push it to a remote endpoint using a "blind" XXE style attack.
 
 ![No dice](/assets/article_images/2017/NoDice.jpg){: .center-image }
 
@@ -38,7 +38,7 @@ Unfortunately, it seemed that the XML parser had been properly configured to ign
 
 ### A wild Consul appears!
 
-A this stage, it didn't seem possible to reflect any data fetched from a remote source. In order to further validate this, I performed a quick check to see whether a number of different URIs were able to be used with the external fetch in place of HTTP. The thought was that an another protocol handler might yield a different result, potentially accidentally leaking data in the error presented to the user. As part of this testing, a number of URIs were attempted, including `file:///`, `tcp://`, `gopher://`, and a few others. Unfortunately all of these URIs appeared to be passed to a Ruby HTTP library that would simply not perform any request that didn't have an HTTP / HTTPS URL. 
+At this stage, it didn't seem possible to reflect any data fetched from a remote source. In order to further validate this, I performed a quick check to see whether a number of different URIs were able to be used with the external fetch in place of HTTP. The thought was that an another protocol handler might yield a different result, potentially accidentally leaking data in the error presented to the user. As part of this testing, a number of URIs were attempted, including `file:///`, `tcp://`, `gopher://`, and a few others. Unfortunately all of these URIs appeared to be passed to a Ruby HTTP library that would simply not perform any request that didn't have an HTTP / HTTPS URL. 
 
 As one last ditch effort to return _some_ sort of data, a few localhost URLs were entered to see how the HTTP library would handle non-printable data.
 
@@ -132,4 +132,4 @@ With that, I constructed a few more requests to remove these injected `check` co
 
 A big thanks to the Bugcrowd ASE that helped triage this bug, and got the `$provider` folks looped in quickly. I'd also like to thank `$provider` for the great communication, quick fix and the bounty; keep it up! :)
 
-Finally, cheers to @yrp604 for proof reading this write-up and correcting my terrible grammar.
+Finally, cheers to @yrp604 for proofreading this write-up and correcting my terrible grammar. *Edit:* Cheers to @bradleyfalzon for some additional spelling fixes ;)
