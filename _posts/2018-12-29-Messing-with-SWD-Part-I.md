@@ -126,7 +126,7 @@ In order to better explain, consider the following example:
 The last clock cycle is being 'ignored' here (hence the `X`), as in this
 context it would be interpreted as a 'turn round' sequence by the host. This
 will be covered later, but this is why we're only interpreting THREE bits
-when there are FOUR in the diagram! :)
+when there are four in the diagram! :)
 
 In line with the above diagram, assuming that this was an SWD `ACK` packet
 being written onto `SWDIO` by the target, a value of `0b001` would be read
@@ -137,7 +137,7 @@ response to our most recent request. However...
 **THIS IS NOT THE CASE, THE RESPONSE IS ACTUALLY AN SWD ACK `FAULT` (`0b100`).**
 
 This is due to all data on the wire being represented in LSB order. In order
-to flip so that the most significant bit (MSB) is first, simple reverse the
+to flip - so that the most significant bit (MSB) is first - simply reverse the
 order of the bits:
 
 * `0b001` becomes `0b100`
