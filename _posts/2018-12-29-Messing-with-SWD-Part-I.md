@@ -229,7 +229,7 @@ The format of a request packet header is as follows - per section 4.3 of
 * `RnW`
   * High (`0b1`) for READ access.
   * Low (`0b0`) for WRITE access.
-* `ADDR[2:3]`
+* `ADDR[0:1]`
   * Two bits representing the register to access.
   * This address is once again written to `SWDIO` LSB first!
 * `PARITY`
