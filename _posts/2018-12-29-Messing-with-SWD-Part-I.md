@@ -12,7 +12,7 @@ device had RDP (Read-Out Protection) set to Level 1 it was not possible to dump
 the firmware from the device. In line with this, any attempts to inspect the
 contents of the flash via debugger would generate an immediate HF (Hard Fault).
 
-While searching for potential work arounds to this particular challenge, I came
+While searching for potential workarounds to this particular challenge, I came
 across a paper by Johannes Obermaier and Stefan Tatschner entitled ["Shedding
 too much Light on a Microcontroller’s Firmware Protection"](https://www.aisec.fraunhofer.de/en/FirmwareProtection.html).
 Although this paper covers a number of attacks on the STM32, one immediately
