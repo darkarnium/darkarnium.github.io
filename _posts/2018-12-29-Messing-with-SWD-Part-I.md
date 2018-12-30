@@ -154,23 +154,23 @@ throughout, namely port types:
     * Provides external access to the system.
   * **Access Port (AP).**
     * Exist within the system and are accessed externally via a Debug Port (DP).
-    * Though there may be more, there WILL be at least one AP in given system.
-    * The AP to interact with is specified via the `APSEL` field of the DP
+    * Though there may be more, there WILL be at least one `AP` in given system.
+    * The `AP` to interact with is specified via the `APSEL` value in the DP
       `SELECT` register.
   * **Debug Access Port (DAP).**
-    * AP and DP.
+    * `AP` and DP.
 
 The placement, and differences between these ports, may be better explained
 by the following diagram:
 
 ![](/assets/article_images/2018/SWD-System.png){: .center-image }
 
-In the above diagram, `SWD` represents the `SWD` protocol being spoken over a
+In the above diagram, `SWD` represents the `SWD` protocol being 'spoken' over a
 set of two wires.
 
 ### Packets
 
-Data transfers in SWD are 'packet' based and successful requests will consist
+Data transfers in SWD are 'packet' based, and successful requests will consist
 of three components:
 
 * 8-bits - Request Header.
@@ -202,7 +202,7 @@ depending on whether this was a read or write request:
 
 As to its purpose, this sequence is needed to transfer control of the `SWDIO`
 line between host and target. This is required due to `SWDIO` being driven
-by either host or target; this sequence is used as a sort of 'give way'
+by either host or target. This sequence is used as a sort of 'give way'
 signal to avoid both host and target attempting to write to `SWDIO`
 simultaneously (which would cause contention).
 
@@ -212,8 +212,9 @@ may be omitted and only the ACK returned.
 #### Request Header
 
 The request header has a very simple and fixed format. It is 8-bits long, and
-instructs the target whether the request is to read or write, intended for an
-AP or DP, and the address of the target register.
+instructs the target whether the request is being made to read or to write to
+it, whether it is intended for an `AP` or DP, and the address of the target
+register.
 
 The format of a request packet header is as follows - per section 4.3 of
 [ARM IHI 0031C](https://static.docs.arm.com/ihi0031/c/IHI0031C_debug_interface_as.pdf):
@@ -223,16 +224,18 @@ The format of a request packet header is as follows - per section 4.3 of
 * `START`
   * This should always be high (`0b1`).
 * `APnDP`
-  * high (`0b1`) for access to AP access, low (`0b0`) for DP access.
+  * High (`0b1`) for access to `AP` access.
+  * Low (`0b0`) for `DP` access.
 * `RnW`
-  * high (`0b1`) for READ access, low (`0b0`) for WRITE access.
+  * High (`0b1`) for READ access.
+  * Low (`0b0`) for WRITE access.
 * `ADDR[2:3]`
   * Two bits representing the register to access.
   * This address is once again written to `SWDIO` LSB first!
 * `PARITY`
   * In the case of a request packet, this field is high (`0b1`) if the number
     of high (`0b1`) bits in the `APnDP`, `RnW`, and `ADDR` fields combined is
-    odd. low (`0b0`) if an even.
+    odd. Low (`0b0`) if an even.
 * `STOP`
   * This should always be low (`0b0`).
 * `PARK`
@@ -240,13 +243,13 @@ The format of a request packet header is as follows - per section 4.3 of
 
 Consider the following examples:
 
-![0b10100101](/assets/article_images/2018/SWD-0b10100101.png){: .center-image }
+![](/assets/article_images/2018/SWD-0b10100101.png){: .center-image }
 
 This above would indicate a `READ` request of the `DP` `IDR` register (`0b00`).
 
-![0b10001101](/assets/article_images/2018/SWD-0b10001101.png){: .center-image }
+![](/assets/article_images/2018/SWD-0b10001101.png){: .center-image }
 
-This would indicate a `WRITE` request of the `DP` `SELECT` register (`0b10`).
+This would indicate a `WRITE` request to the `DP` `SELECT` register (`0b10`).
 Once again, the `ADDR` of the `SELECT` register is LSB first, so `0b10` becomes
 `0b01` on the wire.
 
@@ -255,7 +258,7 @@ Once again, the `ADDR` of the `SELECT` register is LSB first, so `0b10` becomes
 The format of an ACK is as follows - per section 4.3 of
 [ARM IHI 0031C](https://static.docs.arm.com/ihi0031/c/IHI0031C_debug_interface_as.pdf):
 
-![ACK](/assets/article_images/2018/SWD-ACK.png){: .center-image }
+![](/assets/article_images/2018/SWD-ACK.png){: .center-image }
 
 The mapping of valid responses of an ACK are as follows:
 
@@ -263,14 +266,14 @@ The mapping of valid responses of an ACK are as follows:
   * "Everything's fine."
   * This will appear on the wire LSB first (`0b100`).
 * `WAIT` (`0b010`)
-  * "Try again in a bit, I'm still busy."
+  * "Try again in a bit, I'm busy."
   * This will appear on the wire LSB first (`0b010`).
 * `FAULT` (`0b100`)
   * "Something went wrong."
   * This will appear on the wire LSB first (`0b001`).
 
-One caveat for the `FAULT` response is that when a DP has responded with this
-result, the DP will only then reply to:
+One caveat for the `FAULT` response is that when a `DP` has responded with this
+result, the `DP` will only then reply to:
 
   * `READ` of the `DP` `IDP` register.
     * Used to identify the device.
@@ -282,15 +285,14 @@ result, the DP will only then reply to:
 #### Payload
 
 The logical mapping inside of the payload will differ depending on the type of
-request, however, both read and write payloads look the same on the wire from
+request, however both read and write payloads look the same on the wire from
 a conceptual standpoint. This format is as follows - per section 4.3 of [ARM IHI 0031C](https://static.docs.arm.com/ihi0031/c/IHI0031C_debug_interface_as.pdf):
 
 ![Payload](/assets/article_images/2018/SWD-Request-Payload.png){: .center-image }
 
-`RDATA` and `WDATA` in this diagram simply refers to read or write data,
-respectively. This is only being used to demonstrate that this payload is
-the same for both read and write operations, from here, both will just be
-referred to as `DATA`.
+`RDATA` and `WDATA` in this diagram simply refers `DATA` in a read or write
+context - respectively. This is only used here to demonstrate that the payload
+occupies the same space for both read and write operations.
 
 Finally, the parity calculation used to populate the parity bit is performed
 in the same way as the request header. If the number of bits in the `DATA`
