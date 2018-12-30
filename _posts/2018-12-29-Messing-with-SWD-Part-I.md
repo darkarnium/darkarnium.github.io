@@ -290,7 +290,7 @@ a conceptual standpoint. This format is as follows - per section 4.3 of [ARM IHI
 
 ![Payload](/assets/article_images/2018/SWD-Request-Payload.png){: .center-image }
 
-`RDATA` and `WDATA` in this diagram simply refers `DATA` in a read or write
+`RDATA` and `WDATA` in this diagram simply refers to `DATA` in a read or write
 context - respectively. This is only used here to demonstrate that the payload
 occupies the same space for both read and write operations.
 
