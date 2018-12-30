@@ -60,9 +60,9 @@ Finally, a quick disclaimer as to the content of these posts:
 ## SWD?
 
 Serial Wire Debug (SWD) is an alternate 'debugging interface' to JTAG. This
-interface can be used - with an appropriate debugger - to perform a number
-of operations, which has been detailed below. It is very much worth noting that
-this is by no means an exhaustive list.
+interface can be used, with an appropriate debugger, to perform a number
+of useful operations; a number which have been detailed below, though this
+is by no means an exhaustive list.
 
   * Debug microprocessor cores (MCUs) attached to the system.
     * This includes display and modification of registers and memory.
