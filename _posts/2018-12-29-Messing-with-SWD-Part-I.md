@@ -70,7 +70,7 @@ is by no means an exhaustive list.
     * Provides access to debug components with no directly exposed pins.
     * This assumes that the component is connected to a debug bus internally.
   * Access JTAG interfaces of devices attached to the system.
-    * This requires an appropriate `JTAG-AP` Access Port (AP).
+    * This requires an appropriate `JTAG-AP` Access Port (`AP`).
 
 This post is written regarding SWD as it exists in ADI v5 (ARM Debug Interface),
 per [ARM IHI 0031C](https://static.docs.arm.com/ihi0031/c/IHI0031C_debug_interface_as.pdf).
@@ -130,7 +130,7 @@ when there are four in the diagram! :)
 
 In line with the above diagram, and assuming that this was an SWD `ACK` packet
 written onto `SWDIO` by the target, a value of `0b001` would be read
-by the host. If taken at face value, and as appears it appeared on the wire,
+by the host. If taken at face value, and as it appeared on the wire,
 this response would indicate an SWD ACK `OK` (`0b001`) was being sent in
 response to our most recent request. However...
 
@@ -153,12 +153,12 @@ throughout, namely port types:
     * The interface to which the debugger is physically connected.
     * Provides external access to the system.
   * **Access Port (AP).**
-    * Exist within the system and are accessed externally via a Debug Port (DP).
+    * Exist within the system and are accessed externally via a Debug Port (`DP`).
     * Though there may be more, there WILL be at least one `AP` in given system.
-    * The `AP` to interact with is specified via the `APSEL` value in the DP
+    * The `AP` to interact with is specified via the `APSEL` value in the `DP`
       `SELECT` register.
   * **Debug Access Port (DAP).**
-    * `AP` and DP.
+    * `AP` and `DP`.
 
 The placement, and differences between these ports, may be better explained
 by the following diagram:
@@ -213,7 +213,7 @@ may be omitted and only the ACK returned.
 
 The request header has a very simple and fixed format. It is 8-bits long, and
 instructs the target whether the request is being made to read or to write to
-it, whether it is intended for an `AP` or DP, and the address of the target
+it, whether it is intended for an `AP` or `DP`, and the address of the target
 register.
 
 The format of a request packet header is as follows - per section 4.3 of
