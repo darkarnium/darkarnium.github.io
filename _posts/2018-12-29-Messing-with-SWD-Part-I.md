@@ -128,8 +128,8 @@ context it would be interpreted as a 'turn round' sequence by the host. This
 will be covered later, but this is why we're only interpreting THREE bits
 when there are four in the diagram! :)
 
-In line with the above diagram, assuming that this was an SWD `ACK` packet
-being written onto `SWDIO` by the target, a value of `0b001` would be read
+In line with the above diagram, and assuming that this was an SWD `ACK` packet
+written onto `SWDIO` by the target, a value of `0b001` would be read
 by the host. If taken at face value, and as appears it appeared on the wire,
 this response would indicate an SWD ACK `OK` (`0b001`) was being sent in
 response to our most recent request. However...
