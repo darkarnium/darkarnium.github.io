@@ -35,7 +35,7 @@ As a result of all of this, I have spent many evenings poring over datasheets
 in order to better understand SWD, and build my own SWD client implementation
 in Python. The intention being to both better understand the protocol, and
 also provide an easily extensible set of modules which may be used in further
-∂research. 
+research. 
 
 So, with all of this said...
 
