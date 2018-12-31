@@ -14,7 +14,7 @@ contents of the flash via debugger would generate an immediate HF (Hard Fault).
 
 While searching for workarounds, I came across a paper by Johannes Obermaier
 and Stefan Tatschner titled ["Shedding too much Light on a Microcontroller’s Firmware Protection"](https://www.aisec.fraunhofer.de/en/FirmwareProtection.html).
-Although [this paper](https://www.aisec.fraunhofer.de/content/dam/aisec/ResearchExcellence/woot17-paper-obermaier.pdf)
+Although [the paper](https://www.aisec.fraunhofer.de/content/dam/aisec/ResearchExcellence/woot17-paper-obermaier.pdf)
 covers a number of attacks on the STM32, one piqued my interest. This attack,
 under "3.3 Debug Interface Exploit" of the paper linked to above, exploits a
 race condition between the SWD debug interface and the enforcement of the
@@ -310,6 +310,6 @@ Hopefully I'll have some PoC code ready to go, too!
 
 ## Thanks
 
-Cheers to (@SiouxDenim)[https://twitter.com/SiouxDenim] and
-(@AgustinGianni)[https://twitter.com/agustingianni] for proofreading this
+Cheers to [@SiouxDenim](https://twitter.com/SiouxDenim) and
+[@AgustinGianni](https://twitter.com/agustingianni) for proofreading this
 post and correcting my terrible grammar.
