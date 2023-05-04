@@ -210,6 +210,10 @@
 .post-content {
     margin-bottom: $spacing-unit;
 
+    p {
+        padding-bottom: 20px;
+    }
+
     h2 {
         font-size: 32px;
 
