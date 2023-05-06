@@ -6,7 +6,7 @@ author: Peter Adkins
 image:
 ---
 
-A few months ago I bought a Novation FLKey to use as a MIDI controller with
+A few months ago I bought a Novation FLKey to use as a MIDI controller for
 several devices which aren't connected to a DAW.
 
 Of course, it later turned out that due to a combination of subtle quirks or
